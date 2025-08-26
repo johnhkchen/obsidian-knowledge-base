@@ -1,0 +1,16 @@
+{
+  "lockfile-version": 1,
+  "manifest": {
+    "version": 1,
+    "vars": {
+      "GITHUB_OWNER": "johnhkchen",
+      "GITHUB_REPO": "obsidian-knowledge-base"
+    },
+    "hook": {},
+    "profile": {
+      "common": "  export PATH=\"$FLOX_ENV_PROJECT:$PATH\"\n"
+    },
+    "options": {}
+  },
+  "packages": []
+}

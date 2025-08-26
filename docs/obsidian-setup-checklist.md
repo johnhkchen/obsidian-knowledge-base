@@ -12,7 +12,7 @@ Setting up Obsidian with free, self-hosted, instant sync using CouchDB and LiveS
 ## Infrastructure Setup
 
 ### 1. CouchDB Docker Container
-- [ ] Create docker-compose configuration for CouchDB 3.3.3
+- [ ] Create docker-compose configuration for CouchDB 3.5.0 (latest as of 2025)
 - [ ] Configure environment variables:
   - [ ] PUID/PGID for proper permissions
   - [ ] TZ (timezone)

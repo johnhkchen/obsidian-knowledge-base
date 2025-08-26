@@ -11,7 +11,7 @@ Setting up a personal knowledge management system with self-hosted CouchDB sync.
 - [ ] Automated setup through my-little-soda orchestration
 
 ## Architecture Components
-- **CouchDB 3.3.3**: Database backend
+- **CouchDB 3.5.0**: Database backend (latest as of 2025)
 - **Obsidian**: Knowledge management client
 - **LiveSync Plugin**: Sync coordination
 - **Nginx Proxy Manager**: HTTPS termination

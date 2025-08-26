@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  couchdb:
+    image: couchdb:3.5.0
+    container_name: obsidian-couchdb
+    restart: unless-stopped
+    ports:
+      - "5984:5984"
+    environment:
+      # Set proper user and group IDs for permission handling
+      PUID: 1000
+      PGID: 1000
+      # Set timezone
+      TZ: "America/New_York"
+      # CouchDB admin credentials (change these!)
+      COUCHDB_USER: "obsidian_admin"
+      COUCHDB_PASSWORD: "secure_password_change_me"
+    volumes:
+      # Persistent data storage
+      - couchdb_data:/opt/couchdb/data
+      # Configuration storage
+      - couchdb_config:/opt/couchdb/etc/local.d
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5984"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+volumes:
+  couchdb_data:
+    driver: local
+  couchdb_config:
+    driver: local
