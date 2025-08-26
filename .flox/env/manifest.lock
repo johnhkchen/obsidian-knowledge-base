@@ -2,15 +2,264 @@
   "lockfile-version": 1,
   "manifest": {
     "version": 1,
+    "install": {
+      "nginx": {
+        "pkg-path": "nginx"
+      },
+      "tailscale": {
+        "pkg-path": "tailscale"
+      }
+    },
     "vars": {
       "GITHUB_OWNER": "johnhkchen",
       "GITHUB_REPO": "obsidian-knowledge-base"
     },
     "hook": {},
     "profile": {
-      "common": "  export PATH=\"$FLOX_ENV_PROJECT:$PATH\"\n"
+      "common": "  export PATH=\"$FLOX_ENV_PROJECT/tools:$FLOX_ENV_PROJECT:$PATH\"\n"
     },
     "options": {}
   },
-  "packages": []
+  "packages": [
+    {
+      "attr_path": "nginx",
+      "broken": false,
+      "derivation": "/nix/store/76gy1sy11cr8fnirxg1yk4lmpsklaq11-nginx-1.28.0.drv",
+      "description": "Reverse proxy and lightweight webserver",
+      "install_id": "nginx",
+      "license": "[ BSD-2-Clause, BSD-2-Clause, BSD-2-Clause, BSD-2-Clause ]",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=94def634a20494ee057c76998843c015909d6311",
+      "name": "nginx-1.28.0",
+      "pname": "nginx",
+      "rev": "94def634a20494ee057c76998843c015909d6311",
+      "rev_count": 837094,
+      "rev_date": "2025-07-31T05:30:45Z",
+      "scrape_date": "2025-08-02T00:29:11.511435Z",
+      "stabilities": [
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "1.28.0",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "doc": "/nix/store/6008b43ps8p2d8p5xfgw61dld1krjax5-nginx-1.28.0-doc",
+        "out": "/nix/store/4gxxv6m9x1gmgdba508rzsd5h5j8pka8-nginx-1.28.0"
+      },
+      "system": "aarch64-darwin",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "nginx",
+      "broken": false,
+      "derivation": "/nix/store/dhwznb8a57vns51kyz4zgm5wif1g500j-nginx-1.28.0.drv",
+      "description": "Reverse proxy and lightweight webserver",
+      "install_id": "nginx",
+      "license": "[ BSD-2-Clause, BSD-2-Clause, BSD-2-Clause, BSD-2-Clause ]",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=94def634a20494ee057c76998843c015909d6311",
+      "name": "nginx-1.28.0",
+      "pname": "nginx",
+      "rev": "94def634a20494ee057c76998843c015909d6311",
+      "rev_count": 837094,
+      "rev_date": "2025-07-31T05:30:45Z",
+      "scrape_date": "2025-08-02T00:49:29.312036Z",
+      "stabilities": [
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "1.28.0",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "doc": "/nix/store/vfwml86dsbvs0lci906gcwld93h5rh3l-nginx-1.28.0-doc",
+        "out": "/nix/store/r7w4zkh3rqqjsp0d67kw525z5bn7s7dm-nginx-1.28.0"
+      },
+      "system": "aarch64-linux",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "nginx",
+      "broken": false,
+      "derivation": "/nix/store/885wqz8cb39n62qz4y585mkafv2jmpsc-nginx-1.28.0.drv",
+      "description": "Reverse proxy and lightweight webserver",
+      "install_id": "nginx",
+      "license": "[ BSD-2-Clause, BSD-2-Clause, BSD-2-Clause, BSD-2-Clause ]",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=94def634a20494ee057c76998843c015909d6311",
+      "name": "nginx-1.28.0",
+      "pname": "nginx",
+      "rev": "94def634a20494ee057c76998843c015909d6311",
+      "rev_count": 837094,
+      "rev_date": "2025-07-31T05:30:45Z",
+      "scrape_date": "2025-08-02T01:09:27.466802Z",
+      "stabilities": [
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "1.28.0",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "doc": "/nix/store/m8rblwa7dziyb7fw6x2rkv8xahdwkfcf-nginx-1.28.0-doc",
+        "out": "/nix/store/bzmj44ypp1p917vgl8729x6kjnfaffgi-nginx-1.28.0"
+      },
+      "system": "x86_64-darwin",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "nginx",
+      "broken": false,
+      "derivation": "/nix/store/8svd85hwnyghnvds970vyfsa2kjjis0r-nginx-1.28.0.drv",
+      "description": "Reverse proxy and lightweight webserver",
+      "install_id": "nginx",
+      "license": "[ BSD-2-Clause, BSD-2-Clause, BSD-2-Clause, BSD-2-Clause ]",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=94def634a20494ee057c76998843c015909d6311",
+      "name": "nginx-1.28.0",
+      "pname": "nginx",
+      "rev": "94def634a20494ee057c76998843c015909d6311",
+      "rev_count": 837094,
+      "rev_date": "2025-07-31T05:30:45Z",
+      "scrape_date": "2025-08-02T01:33:57.122886Z",
+      "stabilities": [
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "1.28.0",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "doc": "/nix/store/nsck5rz95wysxrnwh7f722ii1xkf38qn-nginx-1.28.0-doc",
+        "out": "/nix/store/9yl8qpvahm4g3k7ckp0f6syxd0wy27ah-nginx-1.28.0"
+      },
+      "system": "x86_64-linux",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "tailscale",
+      "broken": false,
+      "derivation": "/nix/store/5ic2jhd36l6gwn9bgbwkxgnamgdm71m6-tailscale-1.84.3.drv",
+      "description": "Node agent for Tailscale, a mesh VPN built on WireGuard",
+      "install_id": "tailscale",
+      "license": "BSD-3-Clause",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=94def634a20494ee057c76998843c015909d6311",
+      "name": "tailscale-1.84.3",
+      "pname": "tailscale",
+      "rev": "94def634a20494ee057c76998843c015909d6311",
+      "rev_count": 837094,
+      "rev_date": "2025-07-31T05:30:45Z",
+      "scrape_date": "2025-08-02T00:29:51.853619Z",
+      "stabilities": [
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "1.84.3",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "derper": "/nix/store/l0hpxsf90yyjbxfs809ix4g543ixlql4-tailscale-1.84.3-derper",
+        "out": "/nix/store/fkvm6562qr3q52clkdcdcjnw9m9kcygf-tailscale-1.84.3"
+      },
+      "system": "aarch64-darwin",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "tailscale",
+      "broken": false,
+      "derivation": "/nix/store/f4fj18dbwr3rn6db0gamkj0q2blfn726-tailscale-1.84.3.drv",
+      "description": "Node agent for Tailscale, a mesh VPN built on WireGuard",
+      "install_id": "tailscale",
+      "license": "BSD-3-Clause",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=94def634a20494ee057c76998843c015909d6311",
+      "name": "tailscale-1.84.3",
+      "pname": "tailscale",
+      "rev": "94def634a20494ee057c76998843c015909d6311",
+      "rev_count": 837094,
+      "rev_date": "2025-07-31T05:30:45Z",
+      "scrape_date": "2025-08-02T00:50:30.000096Z",
+      "stabilities": [
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "1.84.3",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "derper": "/nix/store/wh358wxbm49gwsv6hjy7l96l5czlnlm3-tailscale-1.84.3-derper",
+        "out": "/nix/store/cjc91cxnwwy5p24ijzwq1wmfqxydnqpv-tailscale-1.84.3"
+      },
+      "system": "aarch64-linux",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "tailscale",
+      "broken": false,
+      "derivation": "/nix/store/9lz5wy3indhchviaij6xj3583xr51847-tailscale-1.84.3.drv",
+      "description": "Node agent for Tailscale, a mesh VPN built on WireGuard",
+      "install_id": "tailscale",
+      "license": "BSD-3-Clause",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=94def634a20494ee057c76998843c015909d6311",
+      "name": "tailscale-1.84.3",
+      "pname": "tailscale",
+      "rev": "94def634a20494ee057c76998843c015909d6311",
+      "rev_count": 837094,
+      "rev_date": "2025-07-31T05:30:45Z",
+      "scrape_date": "2025-08-02T01:10:09.360765Z",
+      "stabilities": [
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "1.84.3",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "derper": "/nix/store/f1x4gc5592nqwxzvgwm8ikh8m643gybg-tailscale-1.84.3-derper",
+        "out": "/nix/store/p0pbmssp29f2yc1hl249abximyyzb5yk-tailscale-1.84.3"
+      },
+      "system": "x86_64-darwin",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "tailscale",
+      "broken": false,
+      "derivation": "/nix/store/vafn6fi5f4qdmdvd4h1ww12c0n9b1cw8-tailscale-1.84.3.drv",
+      "description": "Node agent for Tailscale, a mesh VPN built on WireGuard",
+      "install_id": "tailscale",
+      "license": "BSD-3-Clause",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=94def634a20494ee057c76998843c015909d6311",
+      "name": "tailscale-1.84.3",
+      "pname": "tailscale",
+      "rev": "94def634a20494ee057c76998843c015909d6311",
+      "rev_count": 837094,
+      "rev_date": "2025-07-31T05:30:45Z",
+      "scrape_date": "2025-08-02T01:35:04.390298Z",
+      "stabilities": [
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "1.84.3",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "derper": "/nix/store/d3p3z1wq26137iin2ycwqvbspk35bx7w-tailscale-1.84.3-derper",
+        "out": "/nix/store/q1k58dbkq4mxzv3yjhn0ghiin7flkmwj-tailscale-1.84.3"
+      },
+      "system": "x86_64-linux",
+      "group": "toplevel",
+      "priority": 5
+    }
+  ]
 }

@@ -1,25 +1,6 @@
 version: '3.8'
 
 services:
-  nginx-proxy-manager:
-    image: jc21/nginx-proxy-manager:latest
-    container_name: obsidian-proxy-manager
-    restart: unless-stopped
-    ports:
-      # HTTP
-      - "80:80"
-      # HTTPS
-      - "443:443"
-      # Admin interface
-      - "81:81"
-    volumes:
-      - npm_data:/data
-      - npm_ssl:/etc/letsencrypt
-    environment:
-      DB_SQLITE_FILE: "/data/database.sqlite"
-    depends_on:
-      - couchdb
-
   couchdb:
     image: couchdb:3.5.0
     container_name: obsidian-couchdb
@@ -51,8 +32,4 @@ volumes:
   couchdb_data:
     driver: local
   couchdb_config:
-    driver: local
-  npm_data:
-    driver: local
-  npm_ssl:
     driver: local

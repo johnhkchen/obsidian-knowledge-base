@@ -1,150 +1,149 @@
-# HTTPS Reverse Proxy Setup Guide
+# Tailscale + Nginx Proxy Setup Guide
 
 ## Overview
-This guide sets up Nginx Proxy Manager to provide HTTPS access to CouchDB for mobile device compatibility.
+This guide sets up nginx + tailscale to provide secure HTTPS access to CouchDB for mobile device compatibility using Tailscale's built-in certificate management.
 
 ## Prerequisites
 - CouchDB container running via docker-compose
-- Domain or subdomain pointing to your server
-- Ports 80, 443, and 81 available
+- Tailscale account and device authentication
+- Flox environment with nginx and tailscale installed
 
 ## Setup Steps
 
-### 1. Deploy Containers
+### 1. Deploy CouchDB Container
 ```bash
-# Deploy both CouchDB and Nginx Proxy Manager
-docker-compose up -d
+# Deploy CouchDB container
+docker compose up -d
 
-# Verify both containers are running
-docker-compose ps
+# Verify container is running
+docker compose ps
 ```
 
-### 2. Access Nginx Proxy Manager
-1. Open browser to `http://your-server-ip:81`
-2. Login with default credentials:
-   - Email: `admin@example.com`
-   - Password: `changeme`
-3. **IMMEDIATELY** change default credentials on first login
+### 2. Activate Flox Environment
+```bash
+# Activate the flox environment with nginx and tailscale
+flox activate
 
-### 3. Create SSL Proxy Host
-1. Go to "Proxy Hosts" → "Add Proxy Host"
-2. **Details Tab:**
-   - Domain Names: `your-domain.com` or `subdomain.your-domain.com`
-   - Scheme: `http`
-   - Forward Hostname/IP: `couchdb` (Docker service name)
-   - Forward Port: `5984`
-   - ✅ Cache Assets
-   - ✅ Block Common Exploits
-   - ✅ Websockets Support
+# Verify tools are available
+which nginx
+which tailscale
+which my-little-soda
+```
 
-3. **SSL Tab:**
-   - ✅ SSL Certificate
-   - ✅ Force SSL
-   - ✅ HTTP/2 Support
-   - ✅ HSTS Enabled
-   - Select "Request a new SSL Certificate"
-   - ✅ Force SSL
-   - Email: your-email@domain.com
-   - ✅ I Agree to the Let's Encrypt Terms of Service
+### 3. Setup Tailscale
+```bash
+# Start and authenticate tailscale
+sudo tailscale up
 
-4. **Advanced Tab (Optional):**
-   ```nginx
-   # Add CORS headers for CouchDB
-   add_header Access-Control-Allow-Origin *;
-   add_header Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS";
-   add_header Access-Control-Allow-Headers "Authorization, Content-Type";
-   
-   # Handle OPTIONS requests
-   if ($request_method = 'OPTIONS') {
-       add_header Access-Control-Allow-Origin *;
-       add_header Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS";
-       add_header Access-Control-Allow-Headers "Authorization, Content-Type";
-       add_header Content-Length 0;
-       add_header Content-Type text/plain;
-       return 204;
-   }
-   ```
+# Enable HTTPS certificates (this gives you automatic SSL)
+sudo tailscale cert --domain your-tailscale-name.tailXXXX.ts.net
 
-### 4. Test HTTPS Access
-1. Visit `https://your-domain.com/_utils`
-2. Should see CouchDB admin interface with valid SSL certificate
-3. Test from mobile device to ensure accessibility
+# Check your tailscale status and note your machine name
+tailscale status
+```
 
-### 5. Configure Obsidian LiveSync
+### 4. Configure Nginx
+The nginx configuration is already provided in `nginx.conf`. Start nginx:
+
+```bash
+# Test the nginx configuration
+nginx -t -c $PWD/nginx.conf
+
+# Start nginx with the configuration
+nginx -c $PWD/nginx.conf
+
+# Verify nginx is running
+ps aux | grep nginx
+```
+
+### 5. Test Access
+```bash
+# Test local nginx proxy
+curl -I http://localhost:3880
+
+# Test CouchDB access through proxy
+curl -u obsidian_admin:secure_password_change_me http://localhost:3880
+
+# From another device on your tailscale network:
+# curl -I https://your-machine.tailXXXX.ts.net:3880
+```
+
+### 6. Configure Obsidian LiveSync
 In Obsidian LiveSync plugin settings:
-- Remote Database URI: `https://your-domain.com`
-- Username: `obsidian_admin` (or your CouchDB username)
+- Remote Database URI: `https://your-machine.tailXXXX.ts.net:3880`
+- Username: `obsidian_admin` (or your CouchDB username)  
 - Password: `secure_password_change_me` (or your CouchDB password)
 - Database Name: `obsidiandb`
 
 ## Security Considerations
 
+### Tailscale Security Benefits
+- All traffic is encrypted end-to-end via WireGuard
+- No need to expose ports to the public internet
+- Automatic certificate management
+- Device-level authentication and authorization
+- Private mesh network between your devices
+
 ### Firewall Configuration
 ```bash
-# Allow HTTP/HTTPS traffic
-sudo ufw allow 80/tcp
-sudo ufw allow 443/tcp
+# Only allow tailscale and local access
+# CouchDB and nginx only listen on localhost/tailscale interface
+# No public port exposure needed
 
-# Allow NPM admin interface (restrict to your IP if possible)
-sudo ufw allow 81/tcp
-
-# Block direct CouchDB access from outside (optional)
-# sudo ufw deny 5984/tcp
+# Optional: Block direct CouchDB access
+sudo ufw deny 5984/tcp
 ```
 
-### Strong SSL Configuration
-- Let's Encrypt certificates auto-renew
-- Force HTTPS redirects enabled
-- HTTP/2 support for performance
-- HSTS headers for security
-
 ### CouchDB Security
-- Change default admin credentials
-- Enable require_valid_user in CouchDB config
-- Consider VPN access for additional security
+- ✅ Change default admin credentials (recommended)
+- ✅ Enable require_valid_user in CouchDB config
+- ✅ Access only through Tailscale VPN
+- ✅ No public internet exposure
 
 ## Troubleshooting
 
 ### Common Issues
-1. **SSL Certificate Failed:**
-   - Ensure domain points to your server IP
-   - Check ports 80/443 are accessible from internet
-   - Verify no other services using these ports
+1. **Tailscale Not Connecting:**
+   - Run `sudo tailscale up` to authenticate
+   - Check `tailscale status` for connection issues
+   - Ensure tailscale daemon is running
 
-2. **Mobile App Can't Connect:**
-   - Test HTTPS URL in mobile browser first
-   - Ensure certificate is not self-signed
-   - Check CORS headers are properly set
+2. **Nginx Not Starting:**
+   - Test config: `nginx -t -c $PWD/nginx.conf`
+   - Check if port 3880 is already in use: `lsof -i :3880`
+   - Verify nginx binary is available: `which nginx`
 
-3. **CouchDB Connection Errors:**
-   - Verify CouchDB container is running
-   - Check internal Docker network connectivity
-   - Test direct access to CouchDB on port 5984
+3. **Mobile App Can't Connect:**
+   - Install Tailscale on mobile device and authenticate
+   - Ensure mobile device shows as connected: `tailscale status`
+   - Test access via mobile browser first
+   - Check CORS headers in nginx config
+
+4. **CouchDB Connection Errors:**
+   - Verify CouchDB container is running: `docker compose ps`
+   - Test direct access: `curl localhost:5984`
+   - Check nginx proxy: `curl localhost:3880`
 
 ### Verification Commands
 ```bash
-# Check container logs
-docker-compose logs nginx-proxy-manager
-docker-compose logs couchdb
+# Check all services
+docker compose logs couchdb
+tailscale status
+ps aux | grep nginx
 
-# Test SSL certificate
-curl -I https://your-domain.com
+# Test the full chain
+curl -u obsidian_admin:secure_password_change_me http://localhost:3880/_all_dbs
 
-# Test CouchDB API
-curl -u username:password https://your-domain.com/_all_dbs
+# From other tailscale devices
+curl -I https://your-machine.tailXXXX.ts.net:3880
 ```
 
-## DNS Setup Requirements
-
-### For External Access
-- A record: `your-domain.com` → `your-server-public-ip`
-- Or CNAME: `subdomain.your-domain.com` → `your-domain.com`
-
-### For Local Testing
-Add to `/etc/hosts` (or equivalent):
-```
-your-server-local-ip    your-domain.com
-```
+## No DNS Setup Required
+With Tailscale, you get:
+- Automatic *.tailXXXX.ts.net domain for your machine
+- Built-in SSL certificates
+- No port forwarding or firewall configuration needed
+- Works from anywhere with Tailscale installed
 
 ## Final Steps
 1. Update Obsidian LiveSync settings on all devices
