@@ -1,4 +1,5 @@
-# Obsidian sensitive configuration
+# Environment variables and sensitive configuration
+.env
 .obsidian/plugins/obsidian-livesync/data.json
 SYNC_CREDENTIALS.md
 
