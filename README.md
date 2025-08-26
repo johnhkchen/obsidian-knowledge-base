@@ -16,12 +16,12 @@ This repository serves as:
    gh repo clone johnhkchen/obsidian-knowledge-base
    cd obsidian-knowledge-base
    # my-little-soda binary will be provided by release pipeline
-   ./my-little-soda init
+   ./tools/my-little-soda init
    ```
 
 2. **Set up Infrastructure**
    - Check GitHub Issues for current tasks
-   - Use `./my-little-soda pop` to claim next setup task
+   - Use `./tools/my-little-soda pop` to claim next setup task
    - Follow `docs/obsidian-setup-checklist.md` for complete setup
 
 ## Architecture
@@ -60,16 +60,16 @@ The setup process is orchestrated through GitHub Issues and my-little-soda:
 
 ```bash
 # Check current status
-./my-little-soda status
+./tools/my-little-soda status
 
 # See what work is available  
-./my-little-soda peek
+./tools/my-little-soda peek
 
 # Claim and start working on next task
-./my-little-soda pop
+./tools/my-little-soda pop
 
 # Complete work and create PR
-./my-little-soda bottle
+./tools/my-little-soda bottle
 ```
 
 ## Documentation
