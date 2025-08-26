@@ -1,0 +1,20 @@
+# Obsidian sensitive configuration
+.obsidian/plugins/obsidian-livesync/data.json
+SYNC_CREDENTIALS.md
+
+# Obsidian workspace (user-specific)
+.obsidian/workspace.json
+
+# Obsidian cache and temp files
+.obsidian/workspace-mobile.json
+.obsidian/cache/
+.obsidian/index
+.obsidian/*.tmp
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Personal notes (if any)
+/personal/
+/private/
