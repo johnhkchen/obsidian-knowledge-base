@@ -1,0 +1,8 @@
+2025-08-26T15:20:08-07:00 ERROR: Container obsidian-couchdb status: couchdb
+2025-08-26T15:20:08-07:00 ERROR: CouchDB health check failed
+2025-08-26T15:20:08-07:00 WARN: Nginx proxy not responding on port 3880
+2025-08-26T15:20:08-07:00 INFO: Tailscale is connected with IP 100.68.79.63
+2025-08-26T15:20:08-07:00 INFO: Disk usage is 3%
+2025-08-26T15:20:09-07:00 INFO: CouchDB data volume size: 62.82kB
+2025-08-26T15:20:09-07:00 INFO: Latest backup is 0 hours old
+2025-08-26T15:20:09-07:00 ERROR: Health check found issues
