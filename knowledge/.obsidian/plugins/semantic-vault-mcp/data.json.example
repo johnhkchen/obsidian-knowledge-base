@@ -1,0 +1,23 @@
+{
+  "httpEnabled": true,
+  "httpPort": 3001,
+  "httpsEnabled": false,
+  "httpsPort": 3443,
+  "certificateConfig": {
+    "enabled": false,
+    "selfSigned": true,
+    "autoGenerate": true,
+    "rejectUnauthorized": false,
+    "minTLSVersion": "TLSv1.2"
+  },
+  "debugLogging": false,
+  "showConnectionStatus": true,
+  "autoDetectPortConflicts": true,
+  "enableConcurrentSessions": false,
+  "maxConcurrentConnections": 32,
+  "apiKey": "your_generated_mcp_api_key_here",
+  "dangerouslyDisableAuth": false,
+  "readOnlyMode": false,
+  "pathExclusionsEnabled": false,
+  "enableIgnoreContextMenu": false
+}

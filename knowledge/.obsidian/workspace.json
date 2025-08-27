@@ -1,0 +1,209 @@
+{
+  "main": {
+    "id": "aa716502de01773d",
+    "type": "split",
+    "children": [
+      {
+        "id": "488ff1cb5c90397f",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "da572229990eef84",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "New tab"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "6bb19c176f331df5",
+    "type": "split",
+    "children": [
+      {
+        "id": "4c043de282e54e30",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "494535afaa19661f",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "7f41650ab5092cd8",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "0d3ba142450241b6",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "82ac7a3b2fa0ae32",
+    "type": "split",
+    "children": [
+      {
+        "id": "f3841d7b0fe57507",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "3c789d23a78993b2",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks"
+            }
+          },
+          {
+            "id": "9edc8a103b6b8d12",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links"
+            }
+          },
+          {
+            "id": "2f31241ccf67243c",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "13294b80fef06773",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "obsidian42-brat:BRAT": false,
+      "obsidian-livesync:Show Log": false,
+      "obsidian-livesync:Replicate": false,
+      "obsidian-livesync:P2P Replicator": false,
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false,
+      "obsidian-livesync:Show Customization sync": false
+    }
+  },
+  "active": "da572229990eef84",
+  "lastOpenFiles": [
+    "Obsidian MCP Tests/How It Works - Technical Deep Dive.md",
+    "projects/obsidian-setup.md",
+    "Obsidian MCP Tests/WORKING Setup - Clean Path Solution.md",
+    "Untitled.md",
+    "Untitled 1.md",
+    "Obsidian MCP Tests",
+    "Welcome.md",
+    "Obsidian MCP Tests/Complete Setup Instructions - LiveSync & MCP.md",
+    "Obsidian MCP Tests/MCP Integration Success - What Made It Work.md",
+    "Obsidian MCP Tests/MCP-Test.md",
+    "Diary/2025-08-26.md",
+    "Diary/2025-08-27.md",
+    "tech/my-little-soda-testing-report.md",
+    "Career/Planning/01_daily/Daily Goals.md",
+    "Career/Planning/01_daily",
+    "Career/Networking/Organizations/CCSF CS Club/About.md",
+    "Career/Networking/Events/GitHub Hack Night/About.md",
+    "Career/Portfolio/My Little Soda/README.md Draft.md",
+    "Career/Portfolio/My Little Soda/My Little Soda.md",
+    "Career/Networking/Organizations/CCSF CS Club",
+    "Career/Networking/Events/GitHub Hack Night",
+    "Career/Networking/Organizations",
+    "Career/Networking/Events",
+    "Career/Portfolio/My Little Soda",
+    "Career/Planning/00_inbox/Inbox Goals.md",
+    "Career/Planning/05_yearly/Yearly Goals.md",
+    "Career/Planning/00_inbox",
+    "Career/Planning/05_yearly",
+    "Goals/Wellness/Activities/PE Class Schedule Fall 2025.md",
+    "Goals/Wellness/Activities",
+    "Career/Portfolio/Obsidian Knowledge Base/MCP Server Research.md",
+    "Career/Portfolio/Obsidian Knowledge Base/Obsidian Knowledge Base.md",
+    "Career/Planning/02_weekly/Weekly Goals.md",
+    "Career/Planning/04_quarterly/Quarterly Goals.md",
+    "Career/Planning/03_monthly/Monthly Goals.md",
+    "Career/Networking/People/John Chen.md"
+  ]
+}

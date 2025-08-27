@@ -1,8 +1,14 @@
 # Environment variables and sensitive configuration
 .env
 .mcp.json
-.obsidian/plugins/obsidian-livesync/data.json
+.claude/settings.local.json
 SYNC_CREDENTIALS.md
+
+# Obsidian plugin configurations with sensitive data
+knowledge/.obsidian/plugins/obsidian-livesync/data.json
+knowledge/.obsidian/plugins/obsidian-local-rest-api/data.json
+knowledge/.obsidian/plugins/semantic-vault-mcp/data.json
+.obsidian/plugins/obsidian-livesync/data.json
 
 # SSL certificates and sensitive setup files
 ssl-cert.crt

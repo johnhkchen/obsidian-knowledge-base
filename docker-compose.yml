@@ -1,15 +1,16 @@
 services:
-  nginx:
-    image: nginx:alpine
-    container_name: obsidian-nginx
+  caddy:
+    image: caddy:alpine
+    container_name: obsidian-caddy
     restart: unless-stopped
     ports:
       - "3880:3880"
+      - "443:443"  # HTTPS port for Let's Encrypt
+      - "80:80"    # HTTP port for Let's Encrypt challenges
     volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf:ro
-      - ./ssl-cert.crt:/etc/nginx/ssl/ssl-cert.crt:ro  
-      - ./ssl-cert.key:/etc/nginx/ssl/ssl-cert.key:ro
-      - obsidian_config:/obsidian/synced-vault:ro
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
     depends_on:
       - couchdb
       - obsidian
@@ -19,7 +20,7 @@ services:
         max-size: "10m"
         max-file: "3"
     healthcheck:
-      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:3880/health"]
+      test: ["CMD", "caddy", "validate", "--config", "/etc/caddy/Caddyfile"]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -92,7 +93,9 @@ services:
       - ./knowledge:/obsidian/vault:rw
     ports:
       - "3850:3000"  # LinuxServer container uses port 3000
-      - "27124:27124"  # REST API access
+      - "27124:27124"  # REST API HTTPS access
+      - "27123:27123"  # REST API HTTP access
+      - "3001:3001"  # Native MCP plugin access
     depends_on:
       - couchdb
       - obsidian-init
@@ -116,7 +119,7 @@ services:
       - OBSIDIAN_VERIFY_SSL=false
     depends_on:
       - obsidian
-      - nginx
+      - caddy
     # MCP server runs over stdio - no ports needed for external access
     # It will be used by external Claude Code clients via stdio interface
 
@@ -126,4 +129,8 @@ volumes:
   couchdb_config:
     driver: local
   obsidian_config:
+    driver: local
+  caddy_data:
+    driver: local
+  caddy_config:
     driver: local

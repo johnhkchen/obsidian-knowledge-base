@@ -1,0 +1,41 @@
+# Caddyfile for Obsidian LiveSync with b28.dev domain and Let's Encrypt HTTPS
+
+# Your domain with automatic Let's Encrypt certificates
+obsidian.b28.dev {
+	# CouchDB database access (LiveSync)
+	handle_path /db/* {
+		reverse_proxy obsidian-couchdb:5984
+	}
+	
+	# Obsidian web interface
+	handle_path /obsidian/* {
+		reverse_proxy obsidian-app:3000
+	}
+	
+	# REST API endpoint for MCP  
+	handle /api/* {
+		reverse_proxy obsidian-app:27124 {
+			transport http {
+				tls_insecure_skip_verify
+			}
+		}
+	}
+	
+	# Enable detailed logging
+	log {
+		output stderr
+		level INFO
+	}
+}
+
+# Local fallback for development (HTTP only)
+:3880 {
+	# CouchDB proxy (main database access)
+	reverse_proxy obsidian-couchdb:5984
+	
+	# Enable detailed logging
+	log {
+		output stderr
+		level INFO
+	}
+}
