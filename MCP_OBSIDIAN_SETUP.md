@@ -6,11 +6,12 @@ The MCP (Model Context Protocol) server for Obsidian has been successfully confi
 ## Configuration Details
 
 ### MCP Server Container
-- **Image**: Custom built from `mcp-obsidian` by MarkusPfundstein
+- **Package**: `mcp-obsidian>=0.2.0` from PyPI by MarkusPfundstein
 - **Container Name**: `obsidian-mcp-server`
 - **Connection**: Direct HTTPS connection to Obsidian container
 - **Port**: 27124 (Obsidian Local REST API port)
 - **SSL Verification**: Disabled for container-to-container communication
+- **Updates**: Automatically gets latest version from PyPI on rebuild
 
 ### Environment Variables
 ```
@@ -42,29 +43,32 @@ OBSIDIAN_API_KEY=ea2999ae90a3b62469e45ed5d5b2c60243263c6ffd2f36785b304307f012505
 
 ## Usage
 
-### For External Claude Code Clients
-The MCP server runs over stdio and can be used by external clients:
+### Flox Environment Integration ✨
+The MCP server is automatically configured in the Flox environment:
+
+```bash
+# Activate the Flox environment
+flox activate
+
+# The MCP server is now available to Claude Code via .mcp.json
+# Claude Code will automatically discover the server configuration
+```
+
+### Manual Docker Usage
+For direct Docker usage without Flox:
 
 ```bash
 docker compose run --rm mcp-obsidian
 ```
 
-### Integration with Claude Code
-Add to your Claude Code MCP configuration:
+### Claude Code Integration
+The MCP server is configured in `.mcp.json` and automatically available when using Claude Code in this project:
 
-```json
-{
-  "mcpServers": {
-    "obsidian": {
-      "command": "docker",
-      "args": [
-        "compose", 
-        "-f", "/path/to/obsidian-knowledge-base/docker-compose.yml",
-        "run", "--rm", "mcp-obsidian"
-      ]
-    }
-  }
-}
+```bash
+# Check configured MCP servers
+claude mcp list
+
+# The Obsidian server should appear as: obsidian
 ```
 
 ## Architecture
@@ -90,5 +94,28 @@ Vault Files (/obsidian/vault)
 - Python 3.11+ runtime in MCP server container
 - uv package manager for Python dependencies
 
+## Flox Environment Features
+
+### Automatic Discovery
+- MCP server automatically configured via `.mcp.json`
+- Environment variables properly set for Docker Compose
+- Claude Code discovers server on environment activation
+
+### Available Commands
+```bash
+# Start Obsidian infrastructure
+flox services start obsidian-stack
+
+# Check service status  
+flox services status
+
+# Environment includes docker-compose and required tools
+```
+
+### Environment Variables
+- `FLOX_ENV_PROJECT`: Points to project directory
+- `MCP_TIMEOUT`: Set to 60 seconds for container startup
+- `GITHUB_OWNER` & `GITHUB_REPO`: Set for project context
+
 ## Status: ✅ READY FOR PRODUCTION
-The MCP server is fully configured and ready for integration with Claude Code clients.
+The MCP server is fully configured and ready for integration with Claude Code clients via Flox environment.

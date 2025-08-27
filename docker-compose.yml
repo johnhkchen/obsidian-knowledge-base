@@ -82,8 +82,8 @@ services:
 
   mcp-obsidian:
     build:
-      context: ./mcp-obsidian
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: Dockerfile.mcp-obsidian
     container_name: obsidian-mcp-server
     restart: unless-stopped
     environment:
