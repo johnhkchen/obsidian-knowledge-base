@@ -35,6 +35,9 @@ services:
     image: lscr.io/linuxserver/obsidian:latest
     container_name: obsidian-app
     restart: unless-stopped
+    security_opt:
+      - seccomp:unconfined  # Required for GUI apps to prevent crashes
+    shm_size: "1gb"  # Required for Electron apps
     environment:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}

@@ -10,6 +10,11 @@ ssl-cert.key
 *mobile*.txt
 *livesync*.txt
 
+# Obsidian API credentials and certificates
+obsidian-rest-api.crt
+OBSIDIAN_API_CONFIG.md
+*API_CONFIG*
+
 # Obsidian workspace (user-specific)
 .obsidian/workspace.json
 
