@@ -31,8 +31,32 @@ services:
       retries: 3
       start_period: 40s
 
+  obsidian:
+    image: lscr.io/linuxserver/obsidian:latest
+    container_name: obsidian-app
+    restart: unless-stopped
+    environment:
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-America/New_York}
+    volumes:
+      - obsidian_config:/config
+      - ./knowledge:/obsidian/vault:rw
+      - /dev/dri:/dev/dri  # Optional GPU acceleration
+    ports:
+      - "3000:3000"  # Internal access only
+    depends_on:
+      - couchdb
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
 volumes:
   couchdb_data:
     driver: local
   couchdb_config:
+    driver: local
+  obsidian_config:
     driver: local

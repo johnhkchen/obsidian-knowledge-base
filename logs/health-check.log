@@ -6,3 +6,13 @@
 2025-08-26T15:20:09-07:00 INFO: CouchDB data volume size: 62.82kB
 2025-08-26T15:20:09-07:00 INFO: Latest backup is 0 hours old
 2025-08-26T15:20:09-07:00 ERROR: Health check found issues
+2025-08-26T22:17:21-04:00 INFO: Container obsidian-app is running
+2025-08-26T22:17:22-04:00 INFO: Container obsidian-couchdb is running
+2025-08-26T22:17:22-04:00 INFO: CouchDB health check passed
+2025-08-26T22:17:22-04:00 INFO: CouchDB authentication successful
+2025-08-26T22:17:22-04:00 INFO: Nginx proxy health check passed on port 3880
+2025-08-26T22:17:22-04:00 INFO: Tailscale is connected with IP 100.68.79.63
+2025-08-26T22:17:22-04:00 INFO: Disk usage is 3%
+2025-08-26T22:17:22-04:00 INFO: CouchDB data volume size: 947kB
+2025-08-26T22:17:22-04:00 INFO: Latest backup is 3 hours old
+2025-08-26T22:17:22-04:00 INFO: Health check completed successfully
