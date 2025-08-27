@@ -3,6 +3,9 @@
   "manifest": {
     "version": 1,
     "install": {
+      "docker-compose": {
+        "pkg-path": "docker-compose"
+      },
       "nginx": {
         "pkg-path": "nginx"
       },
@@ -12,15 +15,137 @@
     },
     "vars": {
       "GITHUB_OWNER": "johnhkchen",
-      "GITHUB_REPO": "obsidian-knowledge-base"
+      "GITHUB_REPO": "obsidian-knowledge-base",
+      "MCP_TIMEOUT": "60000"
     },
     "hook": {},
     "profile": {
-      "common": "  export PATH=\"$FLOX_ENV_PROJECT/tools:$FLOX_ENV_PROJECT:$PATH\"\n"
+      "common": "  export PATH=\"$FLOX_ENV_PROJECT/tools:$FLOX_ENV_PROJECT:$PATH\"\n  \n  # Inform users about available MCP server\n  if [ -f \"$FLOX_ENV_PROJECT/.mcp.json\" ]; then\n    echo \"🤖 Obsidian MCP server available - use 'claude mcp list' to see configured servers\"\n  fi\n"
     },
-    "options": {}
+    "options": {},
+    "services": {
+      "obsidian-stack": {
+        "command": "docker compose up -d"
+      }
+    }
   },
   "packages": [
+    {
+      "attr_path": "docker-compose",
+      "broken": false,
+      "derivation": "/nix/store/yghnfmmi8k4a2wyabwy76gkbhp85m3fx-docker-compose-2.38.1.drv",
+      "description": "Docker CLI plugin to define and run multi-container applications with Docker",
+      "install_id": "docker-compose",
+      "license": "Apache-2.0",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=94def634a20494ee057c76998843c015909d6311",
+      "name": "docker-compose-2.38.1",
+      "pname": "docker-compose",
+      "rev": "94def634a20494ee057c76998843c015909d6311",
+      "rev_count": 837094,
+      "rev_date": "2025-07-31T05:30:45Z",
+      "scrape_date": "2025-08-02T00:29:08.583387Z",
+      "stabilities": [
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "2.38.1",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/iwkzs88gjg8fi22sh70l1q02kn09ffl2-docker-compose-2.38.1"
+      },
+      "system": "aarch64-darwin",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "docker-compose",
+      "broken": false,
+      "derivation": "/nix/store/366an685k7pcmf56zb4wp9hhlcg1lqr1-docker-compose-2.38.1.drv",
+      "description": "Docker CLI plugin to define and run multi-container applications with Docker",
+      "install_id": "docker-compose",
+      "license": "Apache-2.0",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=94def634a20494ee057c76998843c015909d6311",
+      "name": "docker-compose-2.38.1",
+      "pname": "docker-compose",
+      "rev": "94def634a20494ee057c76998843c015909d6311",
+      "rev_count": 837094,
+      "rev_date": "2025-07-31T05:30:45Z",
+      "scrape_date": "2025-08-02T00:49:18.990619Z",
+      "stabilities": [
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "2.38.1",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/q2il3shpkqrkix3s3n02hfv4fc1956xc-docker-compose-2.38.1"
+      },
+      "system": "aarch64-linux",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "docker-compose",
+      "broken": false,
+      "derivation": "/nix/store/n9x3fp10npzgdzfl4khhqgckylw62wba-docker-compose-2.38.1.drv",
+      "description": "Docker CLI plugin to define and run multi-container applications with Docker",
+      "install_id": "docker-compose",
+      "license": "Apache-2.0",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=94def634a20494ee057c76998843c015909d6311",
+      "name": "docker-compose-2.38.1",
+      "pname": "docker-compose",
+      "rev": "94def634a20494ee057c76998843c015909d6311",
+      "rev_count": 837094,
+      "rev_date": "2025-07-31T05:30:45Z",
+      "scrape_date": "2025-08-02T01:09:24.385087Z",
+      "stabilities": [
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "2.38.1",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/n2lcy7vk5g38467zzh1jln9laax8jgcj-docker-compose-2.38.1"
+      },
+      "system": "x86_64-darwin",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "docker-compose",
+      "broken": false,
+      "derivation": "/nix/store/5rlbg68vhr5b3blsn1hs2i72k8yvr2bp-docker-compose-2.38.1.drv",
+      "description": "Docker CLI plugin to define and run multi-container applications with Docker",
+      "install_id": "docker-compose",
+      "license": "Apache-2.0",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=94def634a20494ee057c76998843c015909d6311",
+      "name": "docker-compose-2.38.1",
+      "pname": "docker-compose",
+      "rev": "94def634a20494ee057c76998843c015909d6311",
+      "rev_count": 837094,
+      "rev_date": "2025-07-31T05:30:45Z",
+      "scrape_date": "2025-08-02T01:33:44.945914Z",
+      "stabilities": [
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "2.38.1",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/nzdsmx1j88lr2kz7xszvvzi4lxxc2hll-docker-compose-2.38.1"
+      },
+      "system": "x86_64-linux",
+      "group": "toplevel",
+      "priority": 5
+    },
     {
       "attr_path": "nginx",
       "broken": false,

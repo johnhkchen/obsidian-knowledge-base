@@ -1,0 +1,21 @@
+{
+  "mcpServers": {
+    "obsidian": {
+      "command": "docker",
+      "args": [
+        "compose",
+        "-f",
+        "${FLOX_ENV_PROJECT}/docker-compose.yml",
+        "run",
+        "--rm",
+        "mcp-obsidian"
+      ],
+      "env": {
+        "OBSIDIAN_HOST": "obsidian-app",
+        "OBSIDIAN_PORT": "27124",
+        "OBSIDIAN_PROTOCOL": "https",
+        "OBSIDIAN_API_KEY": "ea2999ae90a3b62469e45ed5d5b2c60243263c6ffd2f36785b304307f0125056"
+      }
+    }
+  }
+}
