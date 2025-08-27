@@ -1,4 +1,28 @@
 services:
+  nginx:
+    image: nginx:alpine
+    container_name: obsidian-nginx
+    restart: unless-stopped
+    ports:
+      - "3880:3880"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./ssl-cert.crt:/etc/nginx/ssl/ssl-cert.crt:ro  
+      - ./ssl-cert.key:/etc/nginx/ssl/ssl-cert.key:ro
+    depends_on:
+      - couchdb
+      - obsidian
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:3880/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
   couchdb:
     image: couchdb:3.5.0
     container_name: obsidian-couchdb
@@ -55,6 +79,23 @@ services:
       interval: 30s
       timeout: 10s
       retries: 3
+
+  mcp-obsidian:
+    build:
+      context: ./mcp-obsidian
+      dockerfile: Dockerfile
+    container_name: obsidian-mcp-server
+    restart: unless-stopped
+    environment:
+      - OBSIDIAN_HOST=obsidian-app
+      - OBSIDIAN_PORT=27124
+      - OBSIDIAN_PROTOCOL=https
+      - OBSIDIAN_API_KEY=ea2999ae90a3b62469e45ed5d5b2c60243263c6ffd2f36785b304307f0125056
+    depends_on:
+      - obsidian
+      - nginx
+    # MCP server runs over stdio - no ports needed for external access
+    # It will be used by external Claude Code clients via stdio interface
 
 volumes:
   couchdb_data:
