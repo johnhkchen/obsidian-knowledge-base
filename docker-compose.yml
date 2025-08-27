@@ -9,6 +9,7 @@ services:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
       - ./ssl-cert.crt:/etc/nginx/ssl/ssl-cert.crt:ro  
       - ./ssl-cert.key:/etc/nginx/ssl/ssl-cert.key:ro
+      - obsidian_config:/obsidian/synced-vault:ro
     depends_on:
       - couchdb
       - obsidian
@@ -55,13 +56,33 @@ services:
       retries: 3
       start_period: 40s
 
+  obsidian-init:
+    image: alpine:latest
+    container_name: obsidian-init
+    volumes:
+      - obsidian_config:/config
+    command: |
+      sh -c '
+        mkdir -p /config/.config/obsidian
+        echo "{"                                                > /config/.config/obsidian/obsidian.json
+        echo "  \"vaults\": {"                                 >> /config/.config/obsidian/obsidian.json
+        echo "    \"knowledge_vault\": {"                      >> /config/.config/obsidian/obsidian.json
+        echo "      \"path\": \"/obsidian/vault\","            >> /config/.config/obsidian/obsidian.json
+        echo "      \"ts\": $(date +%s)000,"                   >> /config/.config/obsidian/obsidian.json
+        echo "      \"open\": true"                            >> /config/.config/obsidian/obsidian.json
+        echo "    }"                                           >> /config/.config/obsidian/obsidian.json
+        echo "  }"                                             >> /config/.config/obsidian/obsidian.json
+        echo "}"                                               >> /config/.config/obsidian/obsidian.json
+        echo "Obsidian vault configuration complete - pointing to /obsidian/vault"
+      '
+
   obsidian:
     image: lscr.io/linuxserver/obsidian:latest
     container_name: obsidian-app
     restart: unless-stopped
     security_opt:
-      - seccomp:unconfined  # Required for GUI apps to prevent crashes
-    shm_size: "1gb"  # Required for Electron apps
+      - seccomp:unconfined
+    shm_size: "1gb"
     environment:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
@@ -69,12 +90,12 @@ services:
     volumes:
       - obsidian_config:/config
       - ./knowledge:/obsidian/vault:rw
-      - /dev/dri:/dev/dri  # Optional GPU acceleration
     ports:
-      - "3000:3000"  # Internal access only
+      - "3850:3000"  # LinuxServer container uses port 3000
       - "27124:27124"  # REST API access
     depends_on:
       - couchdb
+      - obsidian-init
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:3000"]
       interval: 30s
