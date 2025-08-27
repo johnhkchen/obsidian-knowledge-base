@@ -89,6 +89,7 @@ Infrastructure deployed and ready for production use. Cross-device sync operatio
 - ✅ **Tailscale VPN**: Connected (`nuc-01-debian.emerald-wage.ts.net`)
 - ✅ **Mobile Access**: Ready via `https://nuc-01-debian.emerald-wage.ts.net:3880`
 - ✅ **Documentation**: Complete setup and troubleshooting guides
+- ✅ **MCP Integration**: Claude Code connected via `obsidian-semantic-mcp` plugin
 
 ### Quick Access
 - **Desktop Setup**: Open this folder in Obsidian, configure LiveSync plugin
