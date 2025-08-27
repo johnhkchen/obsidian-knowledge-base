@@ -74,9 +74,19 @@ The setup process is orchestrated through GitHub Issues and my-little-soda:
 
 ## Documentation
 
+### Public Documentation (`/docs/`)
+User-facing guides and setup instructions accessible to all users:
 - **Setup Guide**: `docs/obsidian-setup-checklist.md` - Complete CouchDB + Obsidian setup
-- **Testing Report**: `knowledge/tech/my-little-soda-testing-report.md` - Tool evaluation findings
-- **Architecture**: This README and documentation in `knowledge/tech/`
+- **Secure Setup**: `docs/secure-setup-guide.md` - Security configuration and hardening
+- **Mobile Setup**: `docs/secure-mobile-setup-guide.md` - Mobile device configuration  
+- **Troubleshooting**: `docs/troubleshooting-guide.md` - Common issues and solutions
+
+### Private Documentation (`/knowledge/`)
+Owner-specific research, analysis, and operational documentation:
+- **Research**: `knowledge/Research/` - Technology evaluations and architectural analysis
+- **Tools**: `knowledge/Tools/` - Development tool feedback and usage reports  
+- **Operations**: `knowledge/Operations/` - System maintenance and monitoring
+- **Architecture**: Strategic documentation and design decisions
 
 ## Status
 
@@ -93,6 +103,6 @@ Infrastructure deployed and ready for production use. Cross-device sync operatio
 
 ### Quick Access
 - **Desktop Setup**: Open this folder in Obsidian, configure LiveSync plugin
-- **Mobile Setup**: Follow `docs/mobile-setup-guide.md`  
+- **Mobile Setup**: Follow `docs/secure-mobile-setup-guide.md`  
+- **Security Configuration**: See `docs/secure-setup-guide.md`
 - **Admin Access**: CouchDB admin at `http://localhost:5984/_utils`
-- **System Status**: See `docs/final-setup-status.md`
