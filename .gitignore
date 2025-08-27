@@ -38,3 +38,7 @@ Thumbs.db
 # Personal notes (if any)
 /personal/
 /private/
+
+# Obsidian vault contents - backed up via CouchDB, not Git
+knowledge/
+!knowledge/.obsidian/community-plugins.json
