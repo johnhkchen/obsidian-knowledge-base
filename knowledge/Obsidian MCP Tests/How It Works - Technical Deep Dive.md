@@ -374,3 +374,10 @@ claude mcp list
 
 *Created: 2025-08-27*  
 *Architecture: Production-tested and documented*
+
+## 🔗 Related Documentation
+
+For practical usage of this MCP integration, see:
+- [[MCP Usage Guide - Common Patterns]] - Learn the fundamental patterns
+- [[MCP Best Practices - Tips and Tricks]] - Optimization and efficiency tips  
+- [[MCP Advanced Scenarios - Use Cases]] - Sophisticated workflows and automation
