@@ -3,6 +3,13 @@
 .obsidian/plugins/obsidian-livesync/data.json
 SYNC_CREDENTIALS.md
 
+# SSL certificates and sensitive setup files
+ssl-cert.crt
+ssl-cert.key
+*setup*.txt
+*mobile*.txt
+*livesync*.txt
+
 # Obsidian workspace (user-specific)
 .obsidian/workspace.json
 
