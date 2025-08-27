@@ -1,25 +1,29 @@
 # MCP Obsidian Server Configuration
 
 ## Overview
-The MCP (Model Context Protocol) server for Obsidian has been successfully configured to integrate with the containerized Obsidian setup. This allows external clients like Claude Code to interact with the Obsidian vault via the Local REST API.
+The MCP (Model Context Protocol) server for Obsidian has been successfully configured using a **plugin-based approach**. This integration uses the `obsidian-semantic-mcp` npm package which provides direct plugin-level access to the Obsidian vault.
+
+⚠️ **Important**: This setup uses a **plugin-based MCP server**, not the containerized REST API approach that failed in earlier attempts.
 
 ## Configuration Details
 
-### MCP Server Container
-- **Package**: `mcp-obsidian>=0.2.0` from PyPI by MarkusPfundstein
-- **Container Name**: `obsidian-mcp-server`
-- **Connection**: Direct HTTPS connection to Obsidian container
-- **Port**: 27124 (Obsidian Local REST API port)
-- **SSL Verification**: Disabled for container-to-container communication
-- **Updates**: Automatically gets latest version from PyPI on rebuild
+### MCP Server Plugin
+- **Package**: `obsidian-semantic-mcp` (npm package)
+- **Integration Method**: Native Obsidian plugin system
+- **Connection**: Direct plugin-level vault access
+- **Status**: ✅ Connected and functional
+- **Advantages**: No REST API overhead, direct file system access
 
-### Environment Variables
+### Configuration
+The plugin-based MCP server is configured through Claude Code's MCP system:
+
+```bash
+# Verify connection
+claude mcp list
+# Output: obsidian: npx obsidian-semantic-mcp - ✓ Connected
 ```
-OBSIDIAN_HOST=obsidian-app
-OBSIDIAN_PORT=27124
-OBSIDIAN_PROTOCOL=https
-OBSIDIAN_API_KEY=ea2999ae90a3b62469e45ed5d5b2c60243263c6ffd2f36785b304307f0125056
-```
+
+**No environment variables required** - the plugin integrates directly with Obsidian's native plugin system.
 
 ### Available MCP Tools
 - `list_files_in_vault` - Lists all files and directories in vault root
@@ -74,25 +78,30 @@ claude mcp list
 ## Architecture
 ```
 Claude Code Client
-       ↓ (stdio/MCP protocol)
-MCP Server Container
-       ↓ (HTTPS API calls)
-Obsidian Container (Local REST API)
-       ↓ (file operations)
-Vault Files (/obsidian/vault)
+       ↓ (MCP Protocol)
+obsidian-semantic-mcp (npm package)
+       ↓ (Plugin-based integration)
+Obsidian Native Plugin System
+       ↓ (Direct file access)
+Vault Files (knowledge/)
 ```
 
+### Why This Works Better Than REST API
+- **Direct Access**: No HTTP overhead or API limitations
+- **Plugin Integration**: Native Obsidian plugin capabilities
+- **Stability**: No container restart issues
+- **Simplicity**: No complex networking or authentication setup
+
 ## Security Notes
-- API key is currently stored in docker-compose.yml
-- SSL verification disabled for container-to-container communication
-- Access restricted to Docker internal network
-- External access only via nginx proxy with proper authentication
+- **Plugin-level Security**: Uses Obsidian's native security model
+- **Local Access Only**: MCP server runs locally, no network exposure
+- **No API Keys Required**: Direct plugin integration eliminates authentication complexity
 
 ## Dependencies
-- Obsidian container with Local REST API plugin enabled
-- Docker Compose networking for container communication
-- Python 3.11+ runtime in MCP server container
-- uv package manager for Python dependencies
+- **Obsidian Installation**: Standard Obsidian application
+- **Node.js/npm**: For `obsidian-semantic-mcp` package
+- **Claude Code**: MCP client integration
+- **No Docker Required**: Plugin-based approach eliminates containerization complexity
 
 ## Flox Environment Features
 
@@ -118,4 +127,12 @@ flox services status
 - `GITHUB_OWNER` & `GITHUB_REPO`: Set for project context
 
 ## Status: ✅ READY FOR PRODUCTION
-The MCP server is fully configured and ready for integration with Claude Code clients via Flox environment.
+The plugin-based MCP server is fully functional and ready for use with Claude Code.
+
+### ⚠️ Note on Failed Docker Approach
+A Docker-based approach using `mcp-obsidian` PyPI package was attempted but failed due to:
+- Container instability (continuous restarts)
+- Complex REST API authentication requirements
+- Network configuration complexity
+
+The current plugin-based approach (`obsidian-semantic-mcp`) provides superior reliability and simplicity.
