@@ -72,6 +72,7 @@ services:
       - /dev/dri:/dev/dri  # Optional GPU acceleration
     ports:
       - "3000:3000"  # Internal access only
+      - "27124:27124"  # REST API access
     depends_on:
       - couchdb
     healthcheck:
@@ -86,11 +87,12 @@ services:
       dockerfile: Dockerfile.mcp-obsidian
     container_name: obsidian-mcp-server
     restart: unless-stopped
+    network_mode: host
     environment:
-      - OBSIDIAN_HOST=obsidian-app
+      - OBSIDIAN_HOST=127.0.0.1
       - OBSIDIAN_PORT=27124
-      - OBSIDIAN_PROTOCOL=https
-      - OBSIDIAN_API_KEY=ea2999ae90a3b62469e45ed5d5b2c60243263c6ffd2f36785b304307f0125056
+      - OBSIDIAN_API_KEY=${OBSIDIAN_API_KEY}
+      - OBSIDIAN_VERIFY_SSL=false
     depends_on:
       - obsidian
       - nginx

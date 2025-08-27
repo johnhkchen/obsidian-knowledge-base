@@ -11,10 +11,13 @@
         "mcp-obsidian"
       ],
       "env": {
-        "OBSIDIAN_HOST": "obsidian-app",
+        "OBSIDIAN_HOST": "127.0.0.1",
         "OBSIDIAN_PORT": "27124",
-        "OBSIDIAN_PROTOCOL": "https",
-        "OBSIDIAN_API_KEY": "ea2999ae90a3b62469e45ed5d5b2c60243263c6ffd2f36785b304307f0125056"
+        "OBSIDIAN_API_KEY": "${OBSIDIAN_API_KEY}",
+        "OBSIDIAN_VERIFY_SSL": "false",
+        "PYTHONHTTPSVERIFY": "0",
+        "REQUESTS_CA_BUNDLE": "",
+        "CURL_CA_BUNDLE": ""
       }
     }
   }
